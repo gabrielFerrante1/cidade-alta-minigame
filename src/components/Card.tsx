@@ -4,7 +4,7 @@ export const Card = ({ children }: {
     children: React.ReactNode
 }) => {
     return (
-        <div className='border-2 border-amber-500 dark:border-amber-400 rounded-sm'>
+        <div className='border-2 border-amber-400 rounded-sm'>
             <img
                 src={headerBg}
                 alt="header bg"
