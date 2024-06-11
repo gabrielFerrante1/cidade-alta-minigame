@@ -1,6 +1,6 @@
 import { CircleX, Moon, Pause, Play, PowerOff, Sun, Timer } from "lucide-react"
-import { useTheme } from "../../hooks/useTheme"
-import { useGameStore } from "../../stores/gameStore"
+import { useTheme } from "@/hooks/useTheme"
+import { useGameStore } from "@/stores/gameStore"
 import { motion, AnimatePresence } from "framer-motion"
 
 export const Header = () => {

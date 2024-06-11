@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useGameStore } from "../stores/gameStore"
+import { useGameStore } from "@/stores/gameStore"
 import { motion } from 'framer-motion'
 
 export const GamePlay = () => {

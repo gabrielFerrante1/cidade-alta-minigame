@@ -1,4 +1,4 @@
-import headerBg from '../assets/header-bg.svg'
+import headerBg from '@/assets/header-bg.svg'
 
 export const Card = ({ children }: {
     children: React.ReactNode

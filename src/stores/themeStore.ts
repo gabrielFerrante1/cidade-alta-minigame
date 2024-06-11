@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Theme } from '../@types/Theme'
+import { Theme } from '@/types/Theme'
 
 export type ThemeState = {
     theme: Theme,

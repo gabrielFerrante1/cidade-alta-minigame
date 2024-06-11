@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Game } from '../@types/Game'
+import { Game } from '@/types/Game'
 
 export type GameState = Game
 

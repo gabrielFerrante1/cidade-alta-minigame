@@ -1,5 +1,5 @@
 import { AreaChart, RotateCcw } from "lucide-react"
-import { useGameStore } from "../../stores/gameStore"
+import { useGameStore } from "@/stores/gameStore"
 import { motion, AnimatePresence } from "framer-motion"
 
 export const Footer = () => {
