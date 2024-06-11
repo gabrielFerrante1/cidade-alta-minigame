@@ -113,13 +113,12 @@ export const GamePlay = () => {
         return () => document.removeEventListener('keydown', handleKeyPress)
     }, [sequence, selectedCharacters, successSound, attempts, status])
 
-
     return (
         <motion.div
             animate={{ opacity: status === 'playing' ? 1 : 0.3 }}
             className="flex flex-col justify-center items-center gap-12 py-8 h-full"
         >
-            <p className="text-slate-600 dark:text-slate-300  text-center font-bold">
+            <p className="text-slate-600 dark:text-slate-300 text-center font-bold">
                 Pressione as teclas na sequência correta!
             </p>
 
