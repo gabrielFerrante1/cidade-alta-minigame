@@ -31,7 +31,7 @@ export const useGameStore = create<GameStore>((set) => ({
     addSelectedCharacter: (character) => set((state) => ({ selectedCharacters: [...state.selectedCharacters, character] })),
     start: () => set({ status: 'playing' }),
     stop: () => set({ status: 'finished', result: null, time: 0, sequence: [], selectedCharacters: [], attempts: 0 }),
-    reset: () => set({ status: 'playing', result: null, time: 0, selectedCharacters: [], attempts: 0 }),
+    reset: () => set({ status: 'playing', result: null, time: 0, timeLimit: 0, selectedCharacters: [], attempts: 0 }),
     pause: () => set({ status: 'paused' }),
     resume: () => set({ status: 'playing' }),
     setStatus: (status) => set({ status }),
