@@ -1,9 +1,13 @@
-import { AreaChart, RotateCcw } from "lucide-react"
+import { AreaChart, Home, RotateCcw } from "lucide-react"
 import { useGameStore } from "@/stores/gameStore"
 import { motion, AnimatePresence } from "framer-motion"
+import { Link } from "react-router-dom"
+import { useLocation } from 'react-router-dom';
 
 export const Footer = () => {
     const { status, reset } = useGameStore()
+
+    const location = useLocation();
 
     return (
         <div className="flex items-center gap-4">
@@ -12,10 +16,17 @@ export const Footer = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex-1"
             >
-                <button className="btn-secondary w-full">
-                    <AreaChart className="size-5" />
-                    Ranking
-                </button>
+                {location.pathname === '/ranking' ?
+                    <Link to="/" className="btn-secondary w-full">
+                        <Home className="size-5" />
+                        Início
+                    </Link>
+                    :
+                    <Link to="/ranking" className="btn-secondary w-full">
+                        <AreaChart className="size-5" />
+                        Ranking
+                    </Link>
+                }
             </motion.div>
 
             <AnimatePresence mode="popLayout">

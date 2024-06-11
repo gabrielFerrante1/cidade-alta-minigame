@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import { Home } from "@/pages/Home"
 import { Layout } from "@/components/Layout"
+import { Home } from "@/pages/Home"
+import { Ranking } from "@/pages/Ranking"
+import { NotFound } from "@/pages/NotFound"
 
 export const MainRoutes = () => {
     return (
@@ -9,6 +11,16 @@ export const MainRoutes = () => {
                 <Route
                     index
                     element={<Home />}
+                />
+
+                <Route
+                    path="/ranking"
+                    element={<Ranking />}
+                />
+
+                <Route
+                    path="*"
+                    element={<NotFound />}
                 />
             </Route>
         </Routes>
