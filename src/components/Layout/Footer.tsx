@@ -12,12 +12,12 @@ export const Footer = () => {
                 Ranking
             </button>
 
-            <AnimatePresence>
+            <AnimatePresence mode="popLayout">
                 {status === "playing" &&
                     <motion.button
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, x: 120 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 240 }}
                         className="btn-primary duration-0 flex-1"
                     >
                         <RotateCcw className="size-5" strokeWidth={2.5} />
