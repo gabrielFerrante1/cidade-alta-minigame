@@ -62,7 +62,7 @@ export const GamePlay = () => {
         const interval = setInterval(() => {
             setTime(time - 1)
 
-            if (time === 0) {
+            if (time - 1 === 0) {
                 // Finish game
                 stop()
 
@@ -127,7 +127,7 @@ export const GamePlay = () => {
                 {sequence?.map((character, index) => (
                     <div
                         key={index}
-                        className={`size-10 border border-slate-400/50 dark:border-slate-600 ${selectedCharacters.includes(character) ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-700'} rounded-md flex justify-center items-center text-slate-600 dark:text-slate-300 font-bold`}
+                        className={`size-10 ${sequence.indexOf(character) === selectedCharacters.length ? 'border-amber-400 border-2' : 'border border-slate-400/50 dark:border-slate-600'} text-slate-600 dark:text-slate-300 ${selectedCharacters.indexOf(character) === index ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-700'} rounded-md flex justify-center items-center font-bold`}
                     >
                         {character}
                     </div>
