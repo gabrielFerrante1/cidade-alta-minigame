@@ -1,9 +1,12 @@
 export type GameStatus = "waiting" | "playing" | "finished" | "paused";
-export type GameResult = "win" | "lose";
+export type GameResult = { type: "win" | "lose", attempts: number };
 
 export type Game = {
     status: GameStatus,
     result: GameResult | null,
     time: number,
-    sequence: string[] | null,
+    timeLimit: number,
+    attempts: number,
+    sequence: string[],
+    selectedCharacters: string[],
 }
