@@ -38,7 +38,7 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className="w-full h-2 bg-slate-300 dark:bg-slate-700 drop-shadow-sm rounded-md">
+            <div className="w-full h-2 bg-slate-300 dark:bg-slate-700 drop-shadow-sm rounded-md duration-150">
                 <div
                     className="h-full bg-amber-400 rounded-md duration-700"
                     style={{ width: '80%' }}

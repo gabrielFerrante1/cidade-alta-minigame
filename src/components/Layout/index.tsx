@@ -12,7 +12,7 @@ export const Layout = () => {
     }, [])
 
     return (
-        <div className='bg-slate-200 dark:bg-slate-900 h-screen flex items-center justify-center'>
+        <div className='bg-slate-200 dark:bg-slate-900 h-screen flex items-center justify-center duration-150'>
             <div className="sm:w-[600px] select-none space-y-8">
                 <Header />
 
