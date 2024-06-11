@@ -1,10 +1,16 @@
 import { useGameStore } from "@/stores/gameStore"
+import { motion } from "framer-motion"
 
 export const GameLobby = () => {
     const { start } = useGameStore()
 
     return (
-        <div className="flex flex-col justify-center items-center gap-16 py-8 h-full">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-col justify-center items-center gap-16 py-8 h-full"
+        >
             <div className="text-center">
                 <p className="text-slate-600 dark:text-slate-300 text-lg font-bold">
                     Seja bem-vindo(a) ao Cidade Alta Minigame!
@@ -19,6 +25,6 @@ export const GameLobby = () => {
             >
                 Iniciar
             </button>
-        </div>
+        </motion.div>
     )
 }

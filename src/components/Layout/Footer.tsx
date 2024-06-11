@@ -7,10 +7,16 @@ export const Footer = () => {
 
     return (
         <div className="flex items-center gap-4">
-            <button className="btn-secondary flex-1" >
-                <AreaChart className="size-5" />
-                Ranking
-            </button>
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex-1"
+            >
+                <button className="btn-secondary w-full">
+                    <AreaChart className="size-5" />
+                    Ranking
+                </button>
+            </motion.div>
 
             <AnimatePresence mode="popLayout">
                 {status === "playing" || status === "paused" ?
