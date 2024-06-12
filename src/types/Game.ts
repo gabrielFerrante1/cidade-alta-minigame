@@ -10,3 +10,7 @@ export type Game = {
     sequence: string[],
     selectedCharacters: string[],
 }
+
+export type GameRanking = GameResult & {
+    date: string
+}

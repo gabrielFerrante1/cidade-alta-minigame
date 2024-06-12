@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useGameStore } from "@/stores/gameStore"
 import { motion } from 'framer-motion'
+import { useRanking } from "@/hooks/useRanking"
 
 export const GamePlay = () => {
     const {
@@ -17,6 +18,8 @@ export const GamePlay = () => {
         setResult,
         stop
     } = useGameStore()
+
+    const { setRankings } = useRanking()
 
     const [successSound, setSuccessSound] = useState<HTMLAudioElement | null>(null)
     const [errorSound, setErrorSound] = useState<HTMLAudioElement | null>(null)
@@ -91,6 +94,9 @@ export const GamePlay = () => {
 
             // Set result
             setResult({ type: 'win', attempts: attempts })
+
+            // Save ranking
+            setRankings({ type: 'win', attempts: attempts, date: new Date().toLocaleDateString() })
         }
 
         const handleKeyPress = (event: KeyboardEvent) => {
