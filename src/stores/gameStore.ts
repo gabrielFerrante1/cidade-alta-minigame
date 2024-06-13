@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import { Game } from '@/types/Game'
 
 export type GameState = Game
@@ -21,25 +22,40 @@ export type GameActions = {
 
 export type GameStore = GameState & GameActions
 
-export const useGameStore = create<GameStore>((set) => ({
-    status: 'waiting',
-    result: null,
-    time: 0,
-    timeLimit: 0,
-    attempts: 0,
-    sequence: [],
-    selectedCharacters: [],
-    addSelectedCharacter: (character) => set(state => ({ selectedCharacters: [...state.selectedCharacters, character] })),
-    start: () => set({ status: 'playing' }),
-    stop: () => set({ status: 'finished', result: null, time: 0, sequence: [], selectedCharacters: [], attempts: 0 }),
-    reset: () => set(state => ({ status: 'playing', result: null, time: state.timeLimit, sequence: [], selectedCharacters: [], attempts: 0 })),
-    pause: () => set({ status: 'paused' }),
-    resume: () => set({ status: 'playing' }),
-    lobby: () => set({ status: 'waiting' }),
-    setStatus: (status) => set({ status }),
-    setResult: (result) => set({ result }),
-    setTime: (time) => set({ time }),
-    setTimeLimit: (timeLimit) => set({ timeLimit }),
-    setAttempts: (attempts) => set({ attempts }),
-    setSequence: (sequence) => set({ sequence })
-}))
+export const useGameStore = create(persist<GameStore>(
+    (set) => ({
+        status: 'waiting',
+        result: null,
+        time: 0,
+        timeLimit: 0,
+        attempts: 0,
+        sequence: [],
+        selectedCharacters: [],
+        addSelectedCharacter: (character) => set(state => ({ selectedCharacters: [...state.selectedCharacters, character] })),
+        start: () => set({ status: 'playing' }),
+        stop: () => set({ status: 'finished', result: null, time: 0, sequence: [], selectedCharacters: [], attempts: 0 }),
+        reset: () => set(state => ({ status: 'playing', result: null, time: state.timeLimit, sequence: [], selectedCharacters: [], attempts: 0 })),
+        pause: () => set({ status: 'paused' }),
+        resume: () => set({ status: 'playing' }),
+        lobby: () => set({ status: 'waiting' }),
+        setStatus: (status) => set({ status }),
+        setResult: (result) => set({ result }),
+        setTime: (time) => set({ time }),
+        setTimeLimit: (timeLimit) => set({ timeLimit }),
+        setAttempts: (attempts) => set({ attempts }),
+        setSequence: (sequence) => set({ sequence })
+    }),
+    {
+        name: 'game',
+        storage: createJSONStorage(() => localStorage),
+        partialize: (state) => (
+            state.status === 'finished' ? {
+                ...state,
+                status: 'waiting'
+            } : {
+                ...state,
+                status: state.status === 'playing' ? 'paused' : state.status
+            }
+        )
+    }
+)) 
