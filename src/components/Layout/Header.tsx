@@ -95,7 +95,7 @@ export const Header = () => {
             >
                 <div className="w-full h-2 bg-slate-300 dark:bg-slate-700 drop-shadow-sm rounded-md duration-150">
                     <div
-                        className="h-full bg-amber-400 rounded-md duration-1000 ease-linear"
+                        className={`h-full ${time !== 0 && time <= 2 ? 'bg-red-500' : 'bg-amber-400'} rounded-md duration-1000 ease-linear`}
                         style={{ width: `${time ? ((time / timeLimit) * 100) : 100}%` }}
                     />
                 </div>
