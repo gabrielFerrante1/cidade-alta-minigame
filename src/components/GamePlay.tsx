@@ -52,7 +52,7 @@ export const GamePlay = () => {
 
         // Generate sequence and initialize game
         const randomSequence = generateSequence()
-        const time = randomSequence.length * 1.5
+        const time = randomSequence.length * 1
 
         setSequence(randomSequence)
         setTime(time)
