@@ -8,9 +8,10 @@ export type Game = {
     timeLimit: number,
     attempts: number,
     sequence: string[],
-    selectedCharacters: string[],
+    selectedCharacters: string[]
 }
 
-export type GameRanking = GameResult & {
+export type GameRanking = Omit<GameResult, "type"> & {
+    time: number,
     date: string
-}
+} 

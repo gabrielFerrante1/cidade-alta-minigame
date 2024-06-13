@@ -5,23 +5,32 @@ export const useRanking = () => {
         const data = localStorage.getItem('rankings')
 
         if (data) {
-            if (!/^\[\s*(\{"type":"[^"]*","attempts":[^,]*,"date":"[^"]*"\}\s*,\s*)*\{"type":"[^"]*","attempts":[^,]*,"date":"[^"]*"\}\s*\]$/.test(data)) {
+            // Validate JSON data format and remove invalid data
+            if (!/^\[\s*(\{"time":[^"]*,"attempts":[^,]*,"date":"[^"]*"\}\s*,\s*)*\{"time":[^"]*,"attempts":[^,]*,"date":"[^"]*"\}\s*\]$/.test(data)) {
                 localStorage.removeItem('rankings')
-                return
+                return;
             }
 
-            return JSON.parse(data)
+            return JSON.parse(data) as GameRanking[]
         }
     }
 
     const setRankings = (data: GameRanking) => {
-        let rankings: GameRanking[] | undefined = getRankings()
+        let rankings = getRankings()
+
+        // Limit to 3 rankings
+        if (rankings && rankings.length > 2) {
+            rankings.pop()
+        }
 
         if (rankings) {
             rankings.push(data)
         } else {
             rankings = [data]
         }
+
+        // Sort by time in ascending order
+        rankings.sort((a, b) => a.time - b.time)
 
         localStorage.setItem('rankings', JSON.stringify(rankings))
     }

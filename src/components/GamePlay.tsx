@@ -7,6 +7,7 @@ export const GamePlay = () => {
     const {
         status,
         time,
+        timeLimit,
         attempts,
         sequence,
         selectedCharacters,
@@ -70,7 +71,7 @@ export const GamePlay = () => {
                 stop()
 
                 // Set result
-                setResult({ type: 'lose', attempts: attempts })
+                setResult({ type: 'lose', attempts })
             }
         }, 1000)
 
@@ -85,7 +86,7 @@ export const GamePlay = () => {
             stop()
 
             // Set result
-            setResult({ type: 'lose', attempts: attempts })
+            setResult({ type: 'lose', attempts })
         }
 
         if (sequence.length > 0 && sequence.length === selectedCharacters.length) {
@@ -93,10 +94,10 @@ export const GamePlay = () => {
             stop()
 
             // Set result
-            setResult({ type: 'win', attempts: attempts })
+            setResult({ type: 'win', attempts })
 
             // Save ranking
-            setRankings({ type: 'win', attempts: attempts, date: new Date().toLocaleDateString() })
+            setRankings({ time: timeLimit - time, attempts, date: new Date().toLocaleDateString() })
         }
 
         const handleKeyPress = (event: KeyboardEvent) => {
