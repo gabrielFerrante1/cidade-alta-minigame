@@ -50,6 +50,10 @@ export const GamePlay = () => {
         // Load sounds
         setSuccessSound(new Audio('/success-sound.mp3'))
         setErrorSound(new Audio('/error-sound.mp3'))
+    }, [])
+
+    useEffect(() => {
+        if (sequence.length !== 0) return;
 
         // Generate sequence and initialize game
         const randomSequence = generateSequence()
@@ -58,7 +62,7 @@ export const GamePlay = () => {
         setSequence(randomSequence)
         setTime(time)
         setTimeLimit(time)
-    }, [])
+    }, [sequence])
 
     useEffect(() => {
         if (status !== 'playing') return;
