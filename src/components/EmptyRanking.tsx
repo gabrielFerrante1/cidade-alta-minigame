@@ -14,7 +14,9 @@ export const EmptyRanking = () => {
                     Nenhum resultado encontrado
                 </p>
 
-                <small className="text-slate-500 dark:text-slate-400 font-bold">Clique no botão abaixo para voltar a página inicial 👇</small>
+                <small className="text-slate-500 dark:text-slate-400 font-bold">
+                    Clique no botão abaixo para voltar a página inicial 👇
+                </small>
             </div>
 
             <Link

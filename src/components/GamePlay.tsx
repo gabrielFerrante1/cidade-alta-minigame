@@ -103,6 +103,7 @@ export const GamePlay = () => {
             const keyPressed = event.key.toUpperCase()
             const keyPressedIndex = sequence.indexOf(keyPressed)
 
+            // Check if selected character is correct
             if (sequence.includes(keyPressed) && selectedCharacters.length === keyPressedIndex) {
                 addSelectedCharacter(keyPressed)
 

@@ -33,7 +33,9 @@ export const Header = () => {
                     >
                         <CircleX className="size-6 text-red-400" />
 
-                        <span className="text-slate-600 dark:text-slate-200 font-bold mt-1">{attempts}</span>
+                        <span className="text-slate-600 dark:text-slate-200 font-bold mt-1">
+                            {attempts}
+                        </span>
                     </motion.div>
                 </div>
 

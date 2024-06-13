@@ -16,7 +16,9 @@ export const GameLobby = () => {
                     Seja bem-vindo(a) ao Cidade Alta Minigame!
                 </p>
 
-                <small className="text-slate-500 dark:text-slate-400 font-bold">Clique no botão abaixo para iniciar 👇</small>
+                <small className="text-slate-500 dark:text-slate-400 font-bold">
+                    Clique no botão abaixo para iniciar 👇
+                </small>
             </div>
 
             <button

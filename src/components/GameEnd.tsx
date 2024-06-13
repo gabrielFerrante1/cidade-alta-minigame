@@ -15,7 +15,9 @@ export const GameEnd = () => {
                     {result && result.type == 'win' ? 'Parabéns, você venceu!' : 'Infelizmente, você perdeu!'}
                 </p>
 
-                <small className="text-slate-500 dark:text-slate-400 font-bold">Clique no botão abaixo para jogar novamente 👇</small>
+                <small className="text-slate-500 dark:text-slate-400 font-bold">
+                    Clique no botão abaixo para jogar novamente 👇
+                </small>
             </div>
 
             <div className="flex justify-between gap-4 w-4/5">
