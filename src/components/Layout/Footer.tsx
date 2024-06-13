@@ -31,16 +31,20 @@ export const Footer = () => {
 
             <AnimatePresence mode="popLayout">
                 {status === "playing" || status === "paused" ?
-                    <motion.button
+                    <motion.div
                         initial={{ opacity: 0, x: 120 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 240 }}
-                        className="btn-primary duration-0 flex-1"
-                        onClick={reset}
+                        className="flex-1"
                     >
-                        <RotateCcw className="size-5" strokeWidth={2.5} />
-                        Reiniciar
-                    </motion.button>
+                        <button
+                            className="btn-primary w-full"
+                            onClick={reset}
+                        >
+                            <RotateCcw className="size-5" strokeWidth={2.5} />
+                            Reiniciar
+                        </button>
+                    </motion.div>
                     : ''}
             </AnimatePresence>
         </div >
