@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom"
 import { Layout } from "@/components/Layout"
 import { Home } from "@/pages/Home"
-import { Ranking } from "@/pages/Ranking"
 import { NotFound } from "@/pages/NotFound"
+import { Ranking } from "@/pages/Ranking"
+import { Route, Routes } from "react-router-dom"
 
 export const MainRoutes = () => {
     return (

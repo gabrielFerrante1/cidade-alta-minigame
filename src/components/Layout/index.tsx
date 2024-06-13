@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom"
+import { Footer } from "@/components/Layout/Footer"
 import { Header } from "@/components/Layout/Header"
 import { useTheme } from "@/hooks/useTheme"
 import { useEffect } from "react"
-import { Footer } from "@/components/Layout/Footer"
+import { Outlet } from "react-router-dom"
 
 export const Layout = () => {
     const { initTheme } = useTheme()

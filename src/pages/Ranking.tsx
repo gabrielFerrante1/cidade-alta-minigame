@@ -1,10 +1,10 @@
 import { Card } from "@/components/Card"
 import { EmptyRanking } from "@/components/EmptyRankings"
+import { Leaderboard } from "@/components/Leaderboard"
 import { useRanking } from "@/hooks/useRanking"
 import { GameRanking } from "@/types/Game"
-import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Leaderboard } from "@/components/Leaderboard"
+import { useEffect, useState } from "react"
 
 export const Ranking = () => {
     const [rankings, setRankings] = useState<GameRanking[]>([])

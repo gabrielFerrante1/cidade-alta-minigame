@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useRanking } from "@/hooks/useRanking"
 import { useGameStore } from "@/stores/gameStore"
 import { motion } from 'framer-motion'
-import { useRanking } from "@/hooks/useRanking"
+import { useEffect, useState } from "react"
 
 export const GamePlay = () => {
     const {

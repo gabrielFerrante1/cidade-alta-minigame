@@ -1,8 +1,8 @@
 import { Card } from "@/components/Card"
-import { GamePlay } from "@/components/GamePlay"
-import { GameLobby } from "@/components/GameLobby"
-import { useGameStore } from "@/stores/gameStore"
 import { GameEnd } from "@/components/GameEnd"
+import { GameLobby } from "@/components/GameLobby"
+import { GamePlay } from "@/components/GamePlay"
+import { useGameStore } from "@/stores/gameStore"
 
 export const Home = () => {
     const { status } = useGameStore()
