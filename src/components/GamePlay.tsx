@@ -91,8 +91,6 @@ export const GamePlay = () => {
             if (time - 1 === 0) {
                 // Finish game
                 stop()
-
-                // Set result
                 setResult('lose')
             }
         }, 1000)
