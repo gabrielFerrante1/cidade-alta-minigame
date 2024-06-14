@@ -117,8 +117,8 @@ export const GamePlay = () => {
             setResult({ type: 'win', attempts })
             setRankings({
                 time: timeLimit - time,
-                date: new Date().toLocaleDateString(),
-                attempts
+                attempts,
+                date: new Date().toLocaleDateString()
             })
         }
     }, [sequence, selectedCharacters, attempts, status, time, timeLimit, stop, setResult, setRankings])

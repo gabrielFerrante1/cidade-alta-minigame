@@ -3,19 +3,17 @@ import { useCallback } from "react";
 
 export const useRanking = () => {
     const getRankings = useCallback(() => {
-        const data = localStorage.getItem('rankings');
+        const data = localStorage.getItem('rankings')
 
         if (data) {
             // Validate JSON data format and remove invalid data
             if (!/^\[\s*(\{"time":[^"]*,"attempts":[^,]*,"date":"[^"]*"\}\s*,\s*)*\{"time":[^"]*,"attempts":[^,]*,"date":"[^"]*"\}\s*\]$/.test(data)) {
-                localStorage.removeItem('rankings');
-                return [];
+                localStorage.removeItem('rankings')
+                return;
             }
 
-            return JSON.parse(data) as GameRanking[];
+            return JSON.parse(data) as GameRanking[]
         }
-
-        return [];
     }, []);
 
     const setRankings = useCallback((data: GameRanking) => {
