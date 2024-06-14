@@ -1,7 +1,8 @@
 import { GameRanking } from "@/types/Game"
+import { useCallback } from "react"
 
 export const useRanking = () => {
-    const getRankings = () => {
+    const getRankings = useCallback(() => {
         const data = localStorage.getItem('rankings')
 
         if (data) {
@@ -13,9 +14,9 @@ export const useRanking = () => {
 
             return JSON.parse(data) as GameRanking[]
         }
-    }
+    }, [])
 
-    const setRankings = (data: GameRanking) => {
+    const setRankings = useCallback((data: GameRanking) => {
         let rankings = getRankings()
 
         // Limit to 3 rankings
@@ -33,7 +34,7 @@ export const useRanking = () => {
         rankings.sort((a, b) => a.time - b.time)
 
         localStorage.setItem('rankings', JSON.stringify(rankings))
-    }
+    }, [])
 
     return { getRankings, setRankings }
 }

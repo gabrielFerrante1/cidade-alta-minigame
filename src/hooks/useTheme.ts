@@ -1,9 +1,10 @@
 import { useThemeStore } from "@/stores/themeStore"
+import { useCallback } from "react"
 
 export const useTheme = () => {
     const { theme, setTheme } = useThemeStore()
 
-    const initTheme = () => {
+    const initTheme = useCallback(() => {
         if (localStorage.getItem('theme') && localStorage.getItem('theme') == 'light') {
             setTheme('light')
 
@@ -16,9 +17,9 @@ export const useTheme = () => {
 
             document.documentElement.classList.add('dark')
         }
-    }
+    }, [setTheme])
 
-    const toggleTheme = () => {
+    const toggleTheme = useCallback(() => {
         if (theme == 'light') {
             setTheme('dark')
 
@@ -36,7 +37,7 @@ export const useTheme = () => {
             document.documentElement.classList.add('light')
             document.documentElement.classList.remove('dark')
         }
-    }
+    }, [theme, setTheme])
 
     return {
         theme,

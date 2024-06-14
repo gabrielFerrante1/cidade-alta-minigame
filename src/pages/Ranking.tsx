@@ -17,7 +17,7 @@ export const Ranking = () => {
         if (data) {
             setRankings(data)
         }
-    }, [])
+    }, [getRankings])
 
     return (
         <main>
