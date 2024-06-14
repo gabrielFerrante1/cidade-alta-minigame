@@ -93,12 +93,12 @@ export const GamePlay = () => {
                 stop()
 
                 // Set result
-                setResult({ type: 'lose', attempts })
+                setResult('lose')
             }
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [time, status, attempts, stop, setResult, setTime])
+    }, [time, status, stop, setResult, setTime])
 
     useEffect(() => {
         if (status !== 'playing') return;
@@ -106,15 +106,14 @@ export const GamePlay = () => {
         if (sequence.length <= 6 && attempts > 1 || sequence.length > 6 && attempts > 2) {
             // Finish game
             stop()
-
-            setResult({ type: 'lose', attempts })
+            setResult('lose')
         }
 
         if (sequence.length > 0 && sequence.length === selectedCharacters.length) {
             // Finish game
             stop()
 
-            setResult({ type: 'win', attempts })
+            setResult('win')
             setRankings({
                 time: timeLimit - time,
                 attempts,

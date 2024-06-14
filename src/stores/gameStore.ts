@@ -1,4 +1,4 @@
-import { Game } from '@/types/Game'
+import { Game, GameResult, GameStatus } from '@/types/Game'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
@@ -12,8 +12,8 @@ export type GameActions = {
     resume: () => void,
     lobby: () => void,
     addSelectedCharacter: (character: string) => void,
-    setStatus: (status: Game['status']) => void,
-    setResult: (result: Game['result']) => void,
+    setStatus: (status: GameStatus) => void,
+    setResult: (type: GameResult['type']) => void,
     setTime: (time: Game['time']) => void,
     setTimeLimit: (timeLimit: Game['timeLimit']) => void,
     setAttempts: (attempts: Game['attempts']) => void,
@@ -39,7 +39,7 @@ export const useGameStore = create(persist<GameStore>(
         resume: () => set({ status: 'playing' }),
         lobby: () => set({ status: 'waiting' }),
         setStatus: (status) => set({ status }),
-        setResult: (result) => set({ result }),
+        setResult: (type) => set(state => ({ result: { type, attempts: state.attempts } })),
         setTime: (time) => set({ time }),
         setTimeLimit: (timeLimit) => set({ timeLimit }),
         setAttempts: (attempts) => set({ attempts }),
