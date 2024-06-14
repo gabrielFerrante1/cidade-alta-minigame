@@ -1,7 +1,7 @@
 import { useRanking } from "@/hooks/useRanking"
 import { useGameStore } from "@/stores/gameStore"
 import { motion } from 'framer-motion'
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export const GamePlay = () => {
     const {
@@ -25,12 +25,12 @@ export const GamePlay = () => {
     const [successSound, setSuccessSound] = useState<HTMLAudioElement | null>(null)
     const [errorSound, setErrorSound] = useState<HTMLAudioElement | null>(null)
 
-    const randomCharacter = () => {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        return characters.charAt(Math.floor(Math.random() * characters.length))
-    }
+    const generateSequence = useCallback(() => {
+        const randomCharacter = () => {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            return characters.charAt(Math.floor(Math.random() * characters.length))
+        }
 
-    const generateSequence = () => {
         const quantities = [6, 12]
         const quantity = quantities[Math.floor(Math.random() * quantities.length)]
 
@@ -44,7 +44,25 @@ export const GamePlay = () => {
         }
 
         return characters
-    }
+    }, [])
+
+    const handleKeyPress = useCallback((event: KeyboardEvent) => {
+        const keyPressed = event.key.toUpperCase()
+        const keyPressedIndex = sequence.indexOf(keyPressed)
+
+        if (keyPressed === 'F5') return;
+
+        // Check if selected character is correct
+        if (sequence.includes(keyPressed) && selectedCharacters.length === keyPressedIndex) {
+            addSelectedCharacter(keyPressed)
+
+            successSound?.play()
+        } else {
+            errorSound?.play()
+
+            setAttempts(attempts + 1)
+        }
+    }, [sequence, selectedCharacters, successSound, errorSound, attempts, addSelectedCharacter, setAttempts])
 
     useEffect(() => {
         // Load sounds
@@ -57,12 +75,12 @@ export const GamePlay = () => {
 
         // Generate sequence and initialize game
         const randomSequence = generateSequence()
-        const time = randomSequence.length * 1
+        const gameTime = randomSequence.length * 1
 
         setSequence(randomSequence)
-        setTime(time)
-        setTimeLimit(time)
-    }, [sequence])
+        setTime(gameTime)
+        setTimeLimit(gameTime)
+    }, [sequence, setSequence, setTime, setTimeLimit, generateSequence])
 
     useEffect(() => {
         if (status !== 'playing') return;
@@ -80,7 +98,7 @@ export const GamePlay = () => {
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [time, status])
+    }, [time, status, attempts, stop, setResult, setTime])
 
     useEffect(() => {
         if (status !== 'playing') return;
@@ -89,7 +107,6 @@ export const GamePlay = () => {
             // Finish game
             stop()
 
-            // Set result
             setResult({ type: 'lose', attempts })
         }
 
@@ -97,35 +114,22 @@ export const GamePlay = () => {
             // Finish game
             stop()
 
-            // Set result
             setResult({ type: 'win', attempts })
-
-            // Save ranking
-            setRankings({ time: timeLimit - time, attempts, date: new Date().toLocaleDateString() })
+            setRankings({
+                time: timeLimit - time,
+                date: new Date().toLocaleDateString(),
+                attempts
+            })
         }
+    }, [sequence, selectedCharacters, attempts, status, time, timeLimit, stop, setResult, setRankings])
 
-        const handleKeyPress = (event: KeyboardEvent) => {
-            const keyPressed = event.key.toUpperCase()
-            const keyPressedIndex = sequence.indexOf(keyPressed)
-
-            if (keyPressed === 'F5') return;
-
-            // Check if selected character is correct
-            if (sequence.includes(keyPressed) && selectedCharacters.length === keyPressedIndex) {
-                addSelectedCharacter(keyPressed)
-
-                successSound?.play()
-            } else {
-                errorSound?.play()
-
-                setAttempts(attempts + 1)
-            }
-        }
+    useEffect(() => {
+        if (status !== 'playing') return;
 
         document.addEventListener('keydown', handleKeyPress)
 
         return () => document.removeEventListener('keydown', handleKeyPress)
-    }, [sequence, selectedCharacters, successSound, attempts, status])
+    }, [status, handleKeyPress])
 
     return (
         <motion.div
